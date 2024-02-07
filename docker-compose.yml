@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  smoke:
+    image: ui:v1
+    build:
+      context: .
+      dockerfile: Dockerfile-ui
+    volumes:
+      - ./:/usr/workspace
+    command: /bin/sh -c "pytest -sv -m smoke -n 4 --alluredir=report"
+    working_dir: /usr/workspace
+    environment:
+      - STAGE=qa
+
+  regression:
+    image: ui:v1
+    build:
+      context: .
+      dockerfile: Dockerfile-ui
+    volumes:
+      - ./:/usr/workspace
+    command: /bin/sh -c "pytest -sv -m regression -n 4 --alluredir=report"
+    working_dir: /usr/workspace
+    environment:
+      - STAGE=qa
+
+  report:
+    image: ui:v1
+    build:
+      context: .
+      dockerfile: Dockerfile-ui
+    volumes:
+      - ./:/usr/workspace
+    command: /bin/sh -c "allure generate report --clean -o allure-report"
+    working_dir: /usr/workspace
