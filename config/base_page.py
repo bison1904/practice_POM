@@ -6,6 +6,7 @@ class BasePage(Helper):
 
     OPEN_MENU = "//button[@id='react-burger-menu-btn']"
     SHOPPING_CARD = "//a[@class='shopping_cart_link']"
+    LINKEDIN_BUTTON = "//li[@class='social_linkedin']/a"
 
     def open(self):
         with allure.step(f"Open {self.PAGE_URL} page"):

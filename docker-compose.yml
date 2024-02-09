@@ -25,6 +25,18 @@ services:
     environment:
       - STAGE=qa
 
+  new_feature:
+    image: ui:v1
+    build:
+      context: .
+      dockerfile: Dockerfile-ui
+    volumes:
+      - ./:/usr/workspace
+    command: /bin/sh -c "pytest -sv -m new_feature -n 4 --alluredir=report"
+    working_dir: /usr/workspace
+    environment:
+      - STAGE=qa
+
   report:
     image: ui:v1
     build:

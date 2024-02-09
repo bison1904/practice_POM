@@ -20,3 +20,8 @@ class InventoryPage(BasePage):
     @allure.step("Open Card page")
     def open_card(self):
         self.find(self.SHOPPING_CARD).click()
+
+    @allure.step("Click on LinkedIn button")
+    def open_linkedin(self):
+        self.find(self.LINKEDIN_BUTTON).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
